@@ -55,7 +55,6 @@ app.get("/signatures/:id", async (req, res) => {
 
 app.post("/signatures", async (req, res) => {
   const { name, message } = req.body;
-  console.log({name, message})
   if (typeof name === "string") {
     await client.query("INSERT INTO signatures (signature,message) values($1, $2)",[name, message])
 
@@ -94,7 +93,7 @@ app.put("/signatures/:id", async (req, res) => {
       });
     } else {
       res.status(404).json({
-        status: "fail",
+        status: "fail",       
         data: {
           id: "Could not find a signature with that id identifier",
         },
